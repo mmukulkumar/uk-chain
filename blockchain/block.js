@@ -16,7 +16,7 @@ class Block {
               Data      : ${this.data}`;
       }
       static genesis() {
-        return new this('Genesis time', '--12---', 'f1r57-h45h', []);
+        return new this('Genesis time', '--12---', 'f1r57-h@5h', []);
     }
     static mineBlock(lastBlock, data) {
         const timestamp = Date.now();
@@ -27,6 +27,10 @@ class Block {
 
     static hash(timestamp, lastHash, data) {
         return SHA256(`${timestamp}${lastHash}${data}`).toString();
+        }
+    static blockHash(block) {
+       const { timestamp, lastHash, data } = block;
+       return Block.hash(timestamp, lastHash, data);
     }
 }
 module.exports = Block;
